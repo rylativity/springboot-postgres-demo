@@ -15,9 +15,9 @@ public class Question extends AuditModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @SequenceGenerator(
             name = "question_generator",
-            sequenceName = "question_sequence",
-            initialValue = 1000
-    )
+    sequenceName = "question_sequence",
+    initialValue = 1000
+            )
     private Long id;
 
     @NotBlank

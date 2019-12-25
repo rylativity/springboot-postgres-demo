@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class QuestionController {
@@ -21,6 +22,16 @@ public class QuestionController {
     public Page<Question> getQuestions(Pageable pageable) {
         return questionRepository.findAll(pageable);
     }
+    @PostMapping("/questions/searchDescription")
+    public List<Question> searchQuestionDescription(@RequestBody String searchTerm) {
+        return questionRepository.findByDescriptionContainingIgnoreCase(searchTerm);
+    }
+
+    @PostMapping("/questions/searchTitle")
+    public List<Question> searchTitle(@RequestBody String searchTerm) {
+        return questionRepository.findByTitleContainingIgnoreCase(searchTerm);
+    }
+
 
     @PostMapping("/questions")
     public Question createQuestion(@Valid @RequestBody Question question) {
